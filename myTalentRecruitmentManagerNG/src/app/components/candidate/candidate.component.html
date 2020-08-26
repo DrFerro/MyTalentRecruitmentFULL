@@ -1,0 +1,78 @@
+<div class="container" style="margin-top: 15px">
+  <!--   <form (ngSubmit)="updateCandidateObservations()" #forma="ngForm">
+ -->
+  <div class="card">
+    <h5 class="card-header">{{ candidate.name }} {{ candidate.lastName1 }} {{ candidate.lastName2 }}</h5>
+    <div class="card-body">
+
+      <h5 class="card-title">{{ candidate.field.description }} - {{ candidate.speciality.description }} - {{ candidate.city.name }}</h5>
+
+      <p class="card-text">{{ candidate.email }} - {{ candidate.phone }} </p>
+
+      <div class="form-group">
+        <textarea [(ngModel)]="candidate.observations" class="form-control" name="bio" type="text"></textarea>
+      </div>
+
+      <p class="card-text">Recomendado el día: {{ candidate.date | date }} por: {{ candidate.customer.name }} {{ candidate.customer.lastName1
+        }} {{ candidate.customer.lastName2 }}, {{ candidate.customer.email }} - {{ candidate.customer.phone }}</p>
+
+      <!--         <div style="margin-bottom:10px">
+          <label for="viewed">
+            <input type="checkbox" class="check-input" [(ngModel)]="candidate.viewed" id="viewed"> Visto
+          </label>
+          <label for="inTest">
+            <input type="checkbox" class="check-input" style="margin-left:30px" [(ngModel)]="candidate.inTest" id="inTest"> En prueba
+          </label>
+          <label for="worker">
+            <input type="checkbox" class="check-input" style="margin-left:30px" [(ngModel)]="candidate.worker" id="worker"> Contratado
+          </label>
+          <label for="paid">
+            <input type="checkbox" class="check-input" style="margin-left:30px" [(ngModel)]="candidate.paid" id="paid"> Pagado
+          </label>
+        </div> -->
+
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-4">
+          <select class="form-control" id="stateCandidate" [(ngModel)]="candidate.stateCandidateId" name="stateCandidate">
+            <option *ngFor="let stateCandidate of statesCandidate" [ngValue]="stateCandidate.id">{{stateCandidate.description}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <button type="button" class="btn btn-outline-success" style="margin-left: 15px" (click)="updateCandidate()">Guardar cambios</button>
+
+        <button type="button" class="btn btn-outline-info" style="margin-left: 15px" (click)="downloadFile()">Descargar CV</button>
+
+        <!-- <button type="button" class="btn btn-outline-danger" style="margin-left: 15px" (click)="deleteCandidate()">Eliminar</button> -->
+        <!-- Boton trigger eliminar mediante modal -->
+        <button type="button" class="btn btn-outline-danger" style="margin-left: 15px" data-toggle="modal" data-target="#myModal">Eliminar candidato</button>
+      </div>
+    </div>
+  </div>
+  <!-- 
+  </form> -->
+
+</div>
+
+<!-- Modal borrar candidato-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Atención</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que quieres eliminar este candidato?
+      </div>
+      <div class="modal-footer">
+        <button type="button" #closeBtn class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteCandidate()">Eliminar candidato</button>
+      </div>
+    </div>
+  </div>
+</div>

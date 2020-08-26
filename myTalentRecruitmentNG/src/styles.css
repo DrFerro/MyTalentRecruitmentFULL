@@ -1,0 +1,88 @@
+header {
+    /* position: fixed; */
+    padding-top: 15px;
+    height: auto;
+    width:100%;
+    border-bottom: 2px solid #E47B08;
+    min-height: 50px;
+}
+
+#mynavbar{
+    background-color: #ffffff;
+}
+
+#myButton{
+    position: relative;
+    width: 24px;
+    margin: 10px 25px 0px 20px;
+ } 
+
+.btn-primary{
+    background-color: rgb(000, 153, 153) !important;
+    border-color: rgb(067, 119, 179) !important; 
+} 
+
+#navIcon{
+    position: relative;
+    margin: 0px 0px 0px -16px;
+    height: 1px;
+    width: 1px;
+}
+
+#navText{
+    padding-left: 15px;
+}
+
+#breadcrumb{
+    background-color: #ffffff;
+}
+
+a{
+    color: #aaaaac;
+}
+
+a:hover {
+    color: #666668;
+    text-decoration:none;
+
+}
+
+#myA{
+    color: #aaaaac;
+    text-decoration:none;
+}
+
+#myA:hover {
+    color: #666668;
+    text-decoration:none;
+}
+
+#controlText{
+    text-align: center;
+    color: #ffffff;
+    /*background-color: #1c1c1c;*/
+    background-color:rgb(067, 119, 179);
+    border-radius: 3px;
+
+}
+
+footer{
+    background-color: #1c1c1c;
+    height: auto;
+    border-top: 2px solid #E47B08;
+    padding: 3em;
+    bottom:0px;
+    margin-top: 20px;
+    min-height: 160px;
+    
+/*     position: fixed;
+    bottom: 0; 
+    width: 100%;
+    margin-top: 5px; */
+
+}
+
+#icon-footer{
+    color: #aaaaac;
+    font-size: 2em;
+}

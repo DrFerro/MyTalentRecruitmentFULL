@@ -1,0 +1,122 @@
+<!-- Filtros de busqueda -->
+<div class="container">
+  <div class="row" style="margin: 15px 0px 15px 0px">
+
+    <div class="col-md-2">
+      <input type="text" class="form-control" name="searchString" placeholder="Email" [(ngModel)]="searchString">
+    </div>
+
+    <div class="col-md-2">
+      <select class="form-control" id="field" [(ngModel)]="candidateSeeker.fieldId" (ngModelChange)="getSpecialities()" name="field">
+        <option value="0">General</option>
+        <option *ngFor="let field of fields" [ngValue]="field.id">{{field.description}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select class="form-control" id="speciality" name="speciality" #speciality=ngModel [(ngModel)]="candidateSeeker.specialityId">
+        <option value="0">Especialidad</option>
+        <option *ngFor="let s of specialities" [ngValue]="s.id">{{s.description}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select class="form-control" id="city" [(ngModel)]="candidateSeeker.cityId" name="city">
+        <option value="0">Ciudad</option>
+        <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select class="form-control" id="stateCandidate" [(ngModel)]="candidateSeeker.stateCandidateId" name="stateCandidateId">
+        <option value="0">Estado</option>
+        <option *ngFor="let stateCandidate of statesCandidate" [ngValue]="stateCandidate.id">{{stateCandidate.description}}</option>
+      </select>
+    </div>
+
+<!--     <div class="col-md-3">
+      <select class="form-control" id="viewed" [(ngModel)]="candidateSeeker.viewed" name="viewed">
+        <option [ngValue]="null">Vistos y no vistos</option>
+        <option [ngValue]="false">No vistos</option>
+        <option [ngValue]="true">Vistos</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-control" id="inTest" [(ngModel)]="candidateSeeker.inTest" name="inTest">
+        <option [ngValue]="false">No contratados</option>
+        <option [ngValue]="true">Contratados en periodo de prueba</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-control" id="worker" [(ngModel)]="candidateSeeker.worker" name="worker">
+        <option [ngValue]="false">No empleados</option>
+        <option [ngValue]="true">Empleados</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-control" id="paid" [(ngModel)]="candidateSeeker.paid" name="paid">
+        <option [ngValue]="false">No gestionados</option>
+        <option [ngValue]="true">Gestionados</option>
+      </select>
+    </div> -->
+
+    <div class="col-md-2">
+      <button type="button" class="btn btn-outline-primary btn-block" (click)="seekCandidates()">Buscar</button>
+    </div>
+
+<!--     <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success btn-block" (click)="getCandidates()">Buscar todos</button>
+    </div> -->
+
+
+  </div>
+
+  <!--Listado-->
+  <div class="container">
+    <div style="align-content: right;">
+      <strong>{{candidates.length}} results</strong>
+    </div>
+    <div class="row animated fadeIn fast">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>General</th>
+                <th>Especialidad</th>
+                <th>Ciudad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let candidate of candidates | filter : 'email' : searchString" [routerLink]="['/candidate', candidate.id]">
+                <td>{{candidate.id}}</td>
+                <td>{{candidate.name}} {{candidate.lastName1}} {{candidate.lastName2}}</td>
+                <td>{{candidate.field.description}}</td>
+                <td>{{candidate.speciality.description}}</td>
+                <td>{{candidate.city.name}}</td>
+
+                <!--               <button [routerLink]="['/candidate', candidate.id]" type="button" class="btn btn-outline-success">Editar</button>
+ -->
+                <!-- 						<td>
+                  <button [routerLink]="['/heroe', k]" type="button" class="btn btn-outline-success">Editar</button>
+                  <button (click)="borrarHeroe(k)" type="button" class="btn btn-outline-danger">Borrar</button>
+                </td> -->
+                <!--   </tr> -->
+            </tbody>
+          </table>
+          <!-- 			<div *ngIf="(heroes | obtenerKeys).length === 0 && !cargando" class="alert alert-info" role="alert">
+            <strong>No hay registros que mostrar</strong>
+          </div>
+          <div *ngIf="cargando" class="alert alert-warning" role="alert">
+            <strong>Cargando...</strong>por favor espere.
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

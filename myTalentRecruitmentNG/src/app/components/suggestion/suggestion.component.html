@@ -1,0 +1,362 @@
+<div class="container">
+  <nav class="breadcrumb" id="breadcrumb">
+    <a class="breadcrumb-item" href="#" id="myA">Home</a>
+    <a class="breadcrumb-item" href="#" id="myA">Formulario</a>
+  </nav>
+</div>
+<div class="container">
+  <form novalidate="" #myForm="ngForm" (ngSubmit)="createSuggesion(myForm)">
+    <h5>A continuación puedes remitirnos el CV de tu contacto para que lo valoremos en las oportunidades de la compañía. Nos
+      aseguraremos de buscar la posición que mejor encaje con su perfil e intereses y te mantendremos al tanto de los avances.
+      ¡Muchas gracias!</h5>
+    <hr>
+    <h3>Datos personales de la candidatura:</h3>
+    <div class="form-group row">
+      <div class="col-md-4">
+        <div [ngClass]="{'has-danger' : (candidateName.errors?.required || candidateName.errors?.pattern) && candidateName.touched}">
+          <label for="candidateName">Nombre*</label>
+          <input type="text" class="form-control" id="candidateName" aria-describedby="candidateNameHelp" placeholder="Nombre" name="candidateName"
+            [(ngModel)]=candidate.name required pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}" #candidateName=ngModel>
+        </div>
+      </div>
+      <div class="col-md-4" [ngClass]="{'has-danger' : (candidateLastName1.errors?.required || candidateLastName1.errors?.pattern) && candidateLastName1.touched}">
+        <div class="form-group">
+          <label for="candidateLastName1">Primer apellido*</label>
+          <input type="text" class="form-control" id="candidateLastName1" aria-describedby="candidateLastName1Help" placeholder="Primer apellido"
+            name="candidateLastName1" [(ngModel)]=candidate.lastName1 required pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}"
+            #candidateLastName1=ngModel>
+        </div>
+      </div>
+      <div class="col-md-4" [ngClass]="{'has-danger' : candidateLastName2.errors?.pattern}">
+        <div class="form-group">
+          <label for="candidateLastName2">Segundo apellido</label>
+          <input type="text" class="form-control" id="candidateLastName2" aria-describedby="candidateLastName2Help" placeholder="Segundo apellido"
+            name="candidateLastName2" [(ngModel)]=candidate.lastName2 pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}"
+            #candidateLastName2=ngModel>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-8" [ngClass]="{'has-danger' : (candidateEmail.errors?.required || candidateEmail.errors?.pattern) && candidateEmail.touched}">
+        <div class="form-group">
+          <label for="candidateEmail">Email*</label>
+          <input type="text" class="form-control" id="candidateEmail" aria-describedby="candidateEmailHelp" placeholder="email" name="candidateEmail"
+            [(ngModel)]=candidate.email required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #candidateEmail=ngModel>
+        </div>
+      </div>
+      <div class="col-md-4" [ngClass]="{'has-danger' : (candidatePhone.errors?.required || candidatePhone.errors?.pattern) && candidatePhone.touched}">
+        <div class="form-group">
+          <label for="candidatePhone">Teléfono*</label>
+          <input type="text" class="form-control" id="candidatePhone" aria-describedby="candidatePhoneHelp" placeholder="teléfono"
+            name="candidatePhone" [(ngModel)]=candidate.phone required pattern="[0-9]{9}" #candidatePhone=ngModel>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row" id="controlText">
+        <div class="col-md-12" *ngIf="candidateName.errors?.required">
+          Escriba el nombre del candidato
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && candidateName.errors?.pattern">
+          Nombre demasiado largo o con caracteres no válidos
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && candidateLastName1.errors?.required">
+          Debe introducir un apellido
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && candidateLastName1.errors?.pattern">
+          Primer apellido demasiado largo o con caracteres no válidos
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && candidateLastName2.errors?.pattern">
+          Segundo apellido demasiado largo o con caracteres no válidos
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && candidateEmail.errors?.required">
+          Debe introducir un correo
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && candidateEmail.errors?.pattern">
+          Correo no válido
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && candidatePhone.errors?.required">
+          Debe introducir un teléfono
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && candidatePhone.errors?.pattern">
+          Teléfono no válido
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>Perfil:</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="field">General*</label>
+          <select class="form-control" id="field" name="field" #field=ngModel [(ngModel)]="candidate.fieldId" (ngModelChange)="getSpecialities()"
+            required>
+          <!-- <option value="0">Selecciona una categoría general</option> -->
+          <option *ngFor="let f of fields" [ngValue]="f.id">{{f.description}}</option>
+          </select>
+        </div>
+      </div>
+      <!-- En el caso de que la categoría general sea distinta a "Otros"(fieldId == 4) la especialidad no será obligatoria -->
+      <div class="col-md-6" [hidden]="candidate.fieldId == 4">
+        <div class="form-group">
+          <label for="speciality">Especialidad*</label>
+          <select class="form-control" id="speciality" name="speciality" #speciality=ngModel [(ngModel)]="candidate.specialityId" required>
+          <!-- <option value="0">Selecciona una categoría general para elegir especialidad</option> -->
+          <option *ngFor="let s of specialities" [ngValue]="s.id">{{s.description}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row" id="controlText">
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && field.pristine">
+          Debe introducir un área de conocimiento.
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && !field.pristine && candidate.fieldId != 4 && candidate.specialityId == 0">
+          Debe introducir una especialidad.
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <h3>Destino:</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="city">Ciudad*</label>
+          <select class="form-control" id="city" name="city" #city=ngModel [(ngModel)]="candidate.cityId" (ngModelChange)="getCities()">
+          <!-- <option value="0">Selecciona una categoría general</option> -->
+          <option *ngFor="let c of cities" [ngValue]="c.id">{{c.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <h3>Observaciones:</h3>
+    <!-- En el caso de que la categoría general sea distinta a "Otros" el comentario no será obligatorio -->
+    <div [hidden]="candidate.fieldId == 4">
+      <div class="form-group">
+        <label for="observations">Si tienes alguna aclaración o comentario acerca del perfil y sus intereses, no dudes en escribirlo aquí.</label>
+        <textarea class="form-control" id="observations" rows="3" placeholder="" name="observations" [(ngModel)]=candidate.observations
+          pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' '.,\n]{0,149}" #observations=ngModel></textarea>
+      </div>
+      <div class="container">
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="observations.errors?.pattern">
+            El comentario es demasiado largo o con caracteres no válidos
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- En el caso de que la categoría general sea "Otros" el comentario debe ser obligatorio -->
+    <div *ngIf="candidate.fieldId == 4">
+      <div class="form-group">
+        <label for="observations">Si tienes alguna aclaración o comentario acerca del perfil y sus intereses, no dudes en escribirlo aquí.</label>
+        <textarea class="form-control" id="observations" rows="3" placeholder="" name="observations" [(ngModel)]=candidate.observations
+          pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' '.,\n]{0,149}" required #observations=ngModel></textarea>
+      </div>
+      <div class="container" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && !field.pristine">
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="observations.errors?.pattern">
+            El comentario es demasiado largo o con caracteres no válidos
+          </div>
+        </div>
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="observations.errors?.required">
+            Escriba un comentario acerca de sus conocimientos
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>Curriculum adjunto:</h3>
+    <div class="form-group">
+      <!-- <label for="fileCV">Adjunta un fichero en formato word o pdf</label>
+      <input type="file" class="form-control-file" id="fileCV" #fileCV [(ngModel)]="candidate.fileCV" name="fileCV" (change)="onFileChange($event)" required> -->
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)">
+      </label>
+      <!-- <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button> -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="confirmCV" name="confirmCV" required> Confirmo que la persona de la que estoy enviando los datos y CV ha sido informada por mí de que estoy poniendo
+            a vuestra disposición sus datos.
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row" id="controlText">
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && !field.pristine && ((candidate.fieldId == 4 && !observations.errors?.required) || (candidate.specialityId != 0 && !speciality.pristine)) && currentFileUpload == null">
+          Adjunte el curriculum del candidato
+        </div>
+        <div class="col-md-12" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && !field.pristine && ((candidate.fieldId == 4 && !observations.errors?.required) || (candidate.specialityId != 0 && !speciality.pristine)) && currentFileUpload != null && !confirmCV">
+          Debe confirmar que la persona de la que esta enviando los datos y CV ha sido informada.
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>Datos para recibir el premio:</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="user.anonymous" name="anonymous"> Prefiero mantenerme en el anonimato y renunciar al posible premio.
+          </label>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="!user.anonymous">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="user.worker" name="worker"> Soy empleado de MyEnterprise.
+          </label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!user.anonymous && !user.worker">
+      <div class="form-group row">
+        <div class="col-md-4">
+          <div [ngClass]="{'has-danger' : (userName.errors?.required || userName.errors?.pattern) && userName.touched}">
+            <label for="userName">Nombre*</label>
+            <input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Nombre" name="userName"
+              [(ngModel)]=user.name required pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}" #userName=ngModel>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div [ngClass]="{'has-danger' : (userLastName1.errors?.required || userLastName1.errors?.pattern) && userLastName1.touched}">
+            <label for="userLastName1">Primer apellido*</label>
+            <input type="text" class="form-control" id="userLastName1" aria-describedby="userLastName1Help" placeholder="Primer apellido"
+              name="userLastName1" [(ngModel)]=user.lastName1 required pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}"
+              #userLastName1=ngModel>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div [ngClass]="{'has-danger' : userLastName2.errors?.pattern}">
+            <label for="userLastName2">Segundo apellido</label>
+            <input type="text" class="form-control" id="userLastName2" aria-describedby="userLastName2Help" placeholder="Segundo apellido"
+              name="userLastName2" [(ngModel)]=user.lastName2 pattern="[A-ZÁÉÍÓÚáéíóúa-z]{1}[A-ZÁÉÍÓÚáéíóúa-z-' ']{0,24}" #userLastName2=ngModel>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-8" [ngClass]="{'has-danger' : (userEmail.errors?.required || userEmail.errors?.pattern) && userEmail.touched}">
+          <label for="userEmail">Email*</label>
+          <input type="email" class="form-control" id="userEmail" aria-describedby="userEmailHelp" placeholder="email" name="userEmail"
+            [(ngModel)]=user.email required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #userEmail=ngModel>
+        </div>
+        <div class="col-md-4" [ngClass]="{'has-danger' : (userPhone.errors?.required || userPhone.errors?.pattern) && userPhone.touched}">
+          <label for="userPhone">Teléfono*</label>
+          <input type="text" class="form-control" id="userPhone" aria-describedby="userPhone" placeholder="teléfono" name="userPhone"
+            [(ngModel)]=user.phone required pattern="[0-9]{9}" #userPhone=ngModel>
+        </div>
+      </div>
+      <div class="container" *ngIf="!candidateName.errors?.required && !candidateName.errors?.pattern && !candidateLastName1.errors?.required && !candidateLastName1.errors?.pattern && !candidateLastName2.errors?.pattern && !candidateEmail.errors?.required && !candidateEmail.errors?.pattern && !candidatePhone.errors?.required && !candidatePhone.errors?.pattern && !field.pristine && ((candidate.fieldId == 4 && !observations.errors?.required) || (candidate.specialityId != 0 && !speciality.pristine)) && currentFileUpload != null && confirmCV">
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="userName.errors?.required">
+            Escriba su nombre
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && userName.errors?.pattern">
+            Nombre demasiado largo o con caracteres no válidos
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && userLastName1.errors?.required">
+            Debe introducir un apellido
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && userLastName1.errors?.pattern">
+            Primer apellido demasiado largo o con caracteres no válidos
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && !userLastName1.errors?.pattern  && userLastName2.errors?.pattern">
+            Segundo apellido demasiado largo o con caracteres no válidos
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && !userLastName1.errors?.pattern && !userLastName2.errors?.pattern && userEmail.errors?.required">
+            Debe introducir un correo
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && !userLastName1.errors?.pattern && !userLastName2.errors?.pattern && !userEmail.errors?.required && userEmail.errors?.pattern">
+            Correo no válido
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && !userLastName1.errors?.pattern && !userLastName2.errors?.pattern && !userEmail.errors?.required && !userEmail.errors?.pattern && userPhone.errors?.required">
+            Debe introducir un teléfono.
+          </div>
+          <div class="col-md-12" *ngIf="!userName.errors?.required && !userName.errors?.pattern && !userLastName1.errors?.required && !userLastName1.errors?.pattern && !userLastName2.errors?.pattern && !userEmail.errors?.required && !userEmail.errors?.pattern && !userPhone.errors?.required && userPhone.errors?.pattern">
+            Teléfono no válido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!user.anonymous && user.worker">
+      <div class="form-group row">
+        <div class="col-md-4" [ngClass]="{'has-danger' : (userEmail.errors?.required || userEmail.errors?.pattern) && userEmail.touched}">
+          <label for="userEmail">Email*</label>
+          <input type="text" class="form-control" id="userEmail" aria-describedby="userEmailHelp" placeholder="@MyEnterprise.com" name="userEmail"
+            [(ngModel)]=user.email required pattern="[a-z0-9._%+-]+@MyEnterprise.com" #userEmail=ngModel>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="userEmail.errors?.required">
+            Escriba su correo corporativo
+          </div>
+        </div>
+        <div class="row" id="controlText">
+          <div class="col-md-12" *ngIf="!userEmail.errors?.required && userEmail.errors?.pattern">
+            Correo no válido
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <div class="row justify-content-center">
+        <div class="col-md-3" *ngIf="!user.anonymous">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="confirmConditions" name="confirmConditions" required> Acepto las
+              <a href="#">condiciones</a>.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center"></div>
+      <div class="form-group row">
+        <label class="col-4">&nbsp;</label>
+        <!--         <re-captcha style="margin: 0px 0px 0px 40px" [(ngModel)]="formModel.captcha" name="captcha" required siteKey="6LdU1FkUAAAAAIpAqZwZd7AfHVv_3aaaGULU7JWj"
+          #captchaControl="ngModel"></re-captcha> -->
+        <re-captcha [(ngModel)]="formModel.captcha" name="captcha" required siteKey="6LdU1FkUAAAAAIpAqZwZd7AfHVv_3aaaGULU7JWj" #captchaControl="ngModel"></re-captcha>
+      </div>
+
+      <div class="row">
+        <label class="col-3">&nbsp;</label>
+        <div class="col-6">
+          <button type="submit" [disabled]="!myForm.valid || currentFileUpload == null " class="btn btn-primary btn-lg btn-block">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- Modal Confirmacion-->
+<!-- <div class="modal fade" id="ModalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Candidato aceptado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Muchas gracias por tu confianza. Te mantedremos informado del seguimiento del candidato.
+      </div>
+      <div class="modal-footer">
+        <button [routerLink]="['/home']" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div> -->

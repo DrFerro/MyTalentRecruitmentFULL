@@ -1,0 +1,50 @@
+/* Es igual que el css de login y habría que implementarlo en el css padre
+   pero metiéndolo en el padre desconfigura la estética de New Account*/
+h5{
+    padding: 8px 0px 5px 40px;
+  }
+  
+  .btn {
+      font-weight: 700;
+      height: 36px;
+      user-select: none;
+      cursor: default;
+  }
+  
+  .card {
+    background-color: #F7F7F7;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+  }
+  
+  .form-signin #inputEmail,
+  .form-signin #inputPassword {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  .btn.btn-signin {
+    background-color: rgb(104, 145, 162);
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    border-radius: 3px;
+    border: none;
+    transition: all 0.218s;
+  }
+    
+/*   .btn.btn-signin:hover,
+  .btn.btn-signin:active,
+  .btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+  } */

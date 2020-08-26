@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: myTalentRecruitmentManager
+  datasource:
+     url: jdbc:mysql://localhost:3306/myTalentRecruitment
+     username: root                                     
+     password:                                      
+   
+  jpa:
+     generate-ddl: false                                     
+     hibernate.ddl-auto: update   
+                             
+     show_sql: true                                          
+     properties.hibernate.default_schema: myTalentRecruitment
+     hibernate.format_sql: true
+     
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: davidferrom
+    password: 
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+     
+#security:
+#  basic:
+#    enabled: false
+                          
+server: #not used if app is deployed as WAR on Tomcat etc
+    port: 8080
+    
+myTalentRecruitmentCorsOrigin:
+  cors.allowed.origins: "*"
+  
+  ################################ Paquito 1234 ################################################

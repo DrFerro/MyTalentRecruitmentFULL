@@ -1,0 +1,87 @@
+<!--Listado-->
+<div class="container">
+  <h3 style="padding: 7px 0px 0px 7px;">{{fieldName}}</h3>
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Id</th>
+              <th>Speciality</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let speciality of specialities">
+              <td>{{speciality.id}}</td>
+              <!-- <td>
+                <input type="text" [(ngModel)]=speciality.description>
+              </td> -->
+              <td>{{speciality.description}}</td>
+              <button type="button" class="btn btn-outline-success" style="margin-left: 15px" (click)="getSpeciality(speciality)" data-toggle="modal" data-target="#myModal2">Update</button>
+              <button type="button" class="btn btn-outline-danger" style="margin-left: 15px" (click)="getSpeciality(speciality)" data-toggle="modal" data-target="#myModal">Delete</button>
+              <!-- <button type="button" class="btn btn-outline-success" style="margin-left: 15px" data-toggle="modal" data-target="#myModal"
+                (click)="getUser(user)">Save</button> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+<!-- New speciality -->
+<div class="container">
+  <form (ngSubmit)="saveSpeciality()">
+    <div class="form-group row">
+      <div class="col-md-4">
+        <label for="newSpecialityName" style="font-weight: bold">New speciality:</label>
+        <input class="form-control" type="text" id="newSpecialityName" name="newSpecialityName" [(ngModel)]=speciality.description placeholder="Name">
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-outline-success" style="margin-top: 32px">Save speciality</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal actualizar especialidad-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModal2Label">Actualiza la especialidad</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>   
+      <div class="col-md-8" style="margin: 10px 0px 10px 0px">
+        <input type="text" class="form-control" [(ngModel)]=specialityName required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" #closeBtn class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteSpeciality()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal borrar especialidad-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Atención</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que quieres eliminar esta especialidad?{{specialityName}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" #closeBtn class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteSpeciality()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

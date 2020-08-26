@@ -1,0 +1,57 @@
+<!-- <div class="container">
+  <div class="card card-container">
+
+    <img id="logo" src="/assets/img/MyEnterpriseLogo.jpg" width="267" height="47" alt="">
+    <h5>Recluting new talent</h5>
+
+    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+      <span id="reauth-email" class="reauth-email"></span>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <label for="username">Email</label>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required/>
+        <div *ngIf="f.submitted && !username.valid" class="help-block">An valid email is required</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required />
+        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+      </div>
+
+      <div id="remember" class="checkbox">
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+
+    </form> 
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="card card-container">
+
+    <img id="logo" src="/assets/img/MyEnterpriseLogo.jpg" width="267" height="47" alt="">
+    <h5>Recluting new talent</h5>
+
+    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && username == null }">
+        <label for="username">User</label>
+        <input class="form-control" placeholder="User" [(ngModel)]="username" name="username" required>
+        <div *ngIf="f.submitted && username == null" class="help-block">An valid user is required</div>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && password == null }">
+        <label for="password">Password</label>
+        <input class="form-control" placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+        <div *ngIf="f.submitted && password == null" class="help-block">Password is required</div>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+
+    </form>
+  </div>
+</div>

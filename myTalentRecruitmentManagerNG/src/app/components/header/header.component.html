@@ -1,0 +1,43 @@
+<header>
+  <div class="container">
+    <div class="col-sm-12">
+      <!-- navbar-toggleable en bootstrap 4 ha cambiado a navbar-expand -->
+      <nav class="navbar navbar-expand-md navbar-light bg-faded" id="mynavbar">
+        <div class="row">
+          <img style="margin-right: 28px" src="/assets/img/newMyEnterpriselogo.gif" width="191" height="41" alt="">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="navButton">
+            <i class="fa fa-bars" id="navIcon"></i>
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto" id="navText">
+<!--                 <p style="margin-top: 8px">Talent referral</p> -->
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/home']">Candidates </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/customers']">Customers </a>
+                </li>
+<!--                 <li>
+                  <a class="nav-link" [routerLink]="['/register']"> New Account </a>
+                </li> -->
+                <li>
+                  <a class="nav-link" [routerLink]="['/fields']"> Categories </a>
+                </li>
+                <li>
+                    <a class="nav-link" [routerLink]="['/recruiters']"> Recruiters </a>
+                  </li>
+                <li>
+                  <a class="nav-link" (click)="logOut()" href="#"> LogOut</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>

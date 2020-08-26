@@ -1,0 +1,39 @@
+<!-- Filtros de busqueda -->
+<div class="container">
+  <div class="row" style="margin: 15px 0px 15px 0px">
+    <div class="col-md-3">
+      <input type="text" class="form-control" name="searchString" placeholder="Busqueda por email" [(ngModel)]="searchString">
+    </div>
+  </div>
+
+
+  <!--Listado-->
+  <div class="container">
+    <div style="align-content: right;">
+      <strong>{{customers.length}} results</strong>
+    </div>
+    <div class="row animated fadeIn fast">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let customer of customers | filter : 'email' : searchString">
+                <td>{{customer.id}}</td>
+                <td>{{customer.name}} {{customer.lastName1}} {{customer.lastName2}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
